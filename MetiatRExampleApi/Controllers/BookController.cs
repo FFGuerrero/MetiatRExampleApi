@@ -27,6 +27,7 @@ namespace MetiatRExampleApi.Controllers
         /// </summary>
         /// <returns>List of books</returns>
         [HttpGet]
+        [Produces("application/json")]
         public async Task<List<BookModel>> Get()
         {
             return await _mediator.Send(new GetBookListQuery());
@@ -37,7 +38,12 @@ namespace MetiatRExampleApi.Controllers
         /// </summary>
         /// <param name="Id">Book unique identifier</param>
         /// <returns>Book object from database</returns>
+        /// <response code="204">If no book exists with provided Id</response>
+        /// <response code="204">Success request</response>
         [HttpGet("{Id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [Produces("application/json")]
         public async Task<BookModel> Get(int Id)
         {
             return await _mediator.Send(new GetBookByIdQuery(Id));
@@ -49,6 +55,7 @@ namespace MetiatRExampleApi.Controllers
         /// <param name="bookModel">Book model to be added</param>
         /// <returns>Added book model</returns>
         [HttpPost]
+        [Produces("application/json")]
         public async Task<BookModel> Post(BookModel bookModel)
         {
             return await _mediator.Send(new AddBookCommand(bookModel));
