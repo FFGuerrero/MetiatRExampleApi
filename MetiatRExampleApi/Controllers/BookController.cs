@@ -30,5 +30,16 @@ namespace MetiatRExampleApi.Controllers
         {
             return await _mediator.Send(new GetBookListQuery());
         }
+
+        /// <summary>
+        /// Get book object by Id
+        /// </summary>
+        /// <param name="Id">Book unique identifier</param>
+        /// <returns>Book object from database</returns>
+        [HttpGet("{Id}")]
+        public async Task<BookModel> Get(int Id)
+        {
+            return await _mediator.Send(new GetBookByIdQuery(Id));
+        }
     }
 }

@@ -38,5 +38,15 @@ namespace MetiatRExampleApi.Core.Data
         {
             return _books;
         }
+
+        /// <summary>
+        /// Get existing book by Id
+        /// </summary>
+        /// <param name="Id">Book unique identifier</param>
+        /// <returns>Existing book instance</returns>
+        public BookModel GetBookById(int Id)
+        {
+            return _books.Find(x=>x.Id == Id);
+        }
     }
 }

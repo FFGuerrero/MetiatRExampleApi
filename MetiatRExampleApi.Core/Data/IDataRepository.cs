@@ -24,5 +24,12 @@ namespace MetiatRExampleApi.Core.Data
         /// <param name="book"></param>
         /// <returns>New created book</returns>
         BookModel AddBook(BookModel book);
+
+        /// <summary>
+        /// Get existing book by Id
+        /// </summary>
+        /// <param name="Id">Book unique identifier</param>
+        /// <returns>Existing book instance</returns>
+        BookModel GetBookById(int Id);
     }
 }

@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 namespace MetiatRExampleApi.Core.Handlers
 {
     /// <summary>
-    /// Represent query handler to get all books
+    /// Represent query handler to get a book by Id
     /// </summary>
-    public class GetBookListHandler : IRequestHandler<GetBookListQuery, List<BookModel>>
+    public class GetBookByIdHandler : IRequestHandler<GetBookByIdQuery, BookModel>
     {
         private readonly IDataRepository _dataRepository;
 
@@ -21,20 +21,21 @@ namespace MetiatRExampleApi.Core.Handlers
         /// Define contructor to inject dependencies
         /// </summary>
         /// <param name="dataRepository"></param>
-        public GetBookListHandler(IDataRepository dataRepository)
+        public GetBookByIdHandler(IDataRepository dataRepository)
         {
             _dataRepository = dataRepository;
         }
 
         /// <summary>
-        /// Handles a GetBookList request
+        /// Handles a GetBookByIdQuery request
         /// </summary>
         /// <param name="request">The request</param>
         /// <param name="cancellationToken">Cancellation token</param>
         /// <returns></returns>
-        public Task<List<BookModel>> Handle(GetBookListQuery request, CancellationToken cancellationToken)
+        /// 
+        public Task<BookModel> Handle(GetBookByIdQuery request, CancellationToken cancellationToken)
         {
-            return Task.FromResult(_dataRepository.GetBooks());
+            return Task.FromResult(_dataRepository.GetBookById(request.Id));
         }
     }
 }
