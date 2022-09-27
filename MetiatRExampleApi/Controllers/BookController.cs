@@ -1,4 +1,5 @@
 ﻿using MediatR;
+using MetiatRExampleApi.Core.Commands;
 using MetiatRExampleApi.Core.Models;
 using MetiatRExampleApi.Core.Queries;
 using Microsoft.AspNetCore.Http;
@@ -40,6 +41,17 @@ namespace MetiatRExampleApi.Controllers
         public async Task<BookModel> Get(int Id)
         {
             return await _mediator.Send(new GetBookByIdQuery(Id));
+        }
+
+        /// <summary>
+        /// Add new book
+        /// </summary>
+        /// <param name="bookModel">Book model to be added</param>
+        /// <returns>Added book model</returns>
+        [HttpPost]
+        public async Task<BookModel> Post(BookModel bookModel)
+        {
+            return await _mediator.Send(new AddBookCommand(bookModel));
         }
     }
 }
