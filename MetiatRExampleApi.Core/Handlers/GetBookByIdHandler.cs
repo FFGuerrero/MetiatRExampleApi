@@ -31,7 +31,7 @@ namespace MetiatRExampleApi.Core.Handlers
         /// </summary>
         /// <param name="request">The request</param>
         /// <param name="cancellationToken">Cancellation token</param>
-        /// <returns></returns>
+        /// <returns>List of books</returns>
         /// 
         public Task<BookModel> Handle(GetBookByIdQuery request, CancellationToken cancellationToken)
         {
